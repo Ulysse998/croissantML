@@ -1,0 +1,165 @@
+import pandas as pd
+import json
+import sys
+from pathlib import Path
+from datetime import datetime
+from mlcroissant import Dataset
+import hashlib
+
+def calculate_sha256(file_path: Path) -> str: """Calculate SHA256 hash of a file."""
+    hash_sha256 = hashlib.sha256()
+    with open(file_path,
+"rb") as f:
+        for chunk in iter(lambda: f.read(4096), b""):
+            hash_sha256.update(chunk)
+    return hash_sha256.hexdigest()
+
+def infer_data_type(series: pd.Series) -> str: """Determine the appropriate data type for a pandas series."""
+    # Handle empty series
+    if series.empty:
+        return "Text"
+    
+    # Remove NA values
+    series = series.dropna()
+    
+    # Check numeric types
+    try:
+        pd.to_numeric(series)
+        if series.astype(str).str.isdigit().all():
+            return "Integer"
+        return "Float"
+    except:
+        pass
+    
+    # Check boolean
+    if set(series.astype(str).str.lower().unique()) <= {
+  "true",
+  "false",
+  "0",
+  "1"
+}:
+        return "Boolean"
+    
+    # Check date formats
+    date_formats = ['%Y%m%d', '%d/%m/%Y', '%Y-%m-%d'
+]
+    for fmt in date_formats:
+        try:
+            pd.to_datetime(series, format=fmt, errors='raise')
+            return "Date"
+        except:
+            continue
+    
+    return "Text"
+
+def generate_metadata(csv_path: Path) -> dict: """Generate Croissant metadata for a single CSV file."""
+    # Read CSV with semicolon delimiter
+    df = pd.read_csv(csv_path, sep=';', engine='python')
+    
+    # Generate file object
+    file_object = {
+  "@type": "FileObject",
+  "name": csv_path.stem,
+  "description": f"CSV file: {csv_path.name}",
+  "encodingFormat": "text/csv",
+  "contentUrl": f"file://{csv_path.absolute().as_posix()}",
+  "sha256": calculate_sha256(csv_path),
+  "@id": f"file/{csv_path.stem}"
+}
+    
+    # Generate fields
+    fields = []
+    for col in df.columns:
+        field = {
+  "@type": "Field",
+  "name": col,
+  "dataType": infer_data_type(df[col
+  ]),
+  "source": {
+    "fileObject": {
+      "@id": f"file/{csv_path.stem}"
+    },
+    "extract": {
+      "column": col
+    }
+  },
+  "@id": f"field/{csv_path.stem}/{col}"
+}
+        fields.append(field)
+    
+    # Generate recordset
+    record_set = {
+  "@type": "RecordSet",
+  "name": csv_path.stem,
+  "description": f"Data from {csv_path.name}",
+  "fields": fields,
+  "@id": f"recordset/{csv_path.stem}"
+}
+    
+    # Complete metadata
+    metadata = {
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "cr": "http://mlcommons.org/croissant/",
+    "description": "cr:description",
+    "fields": "cr:fields",
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "source": "cr:source",
+    "extract": "cr:extract",
+    "fileObject": {
+      "@id": "cr:fileObject",
+      "@type": "@id"
+    },
+    "contentUrl": {
+      "@id": "cr:contentUrl",
+      "@type": "@id"
+    }
+  },
+  "@type": "Dataset",
+  "name": f"Dataset_{csv_path.stem}",
+  "description": f"Dataset generated from {csv_path.name}",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "datePublished": datetime.now().date().isoformat(),
+  "distribution": [file_object
+  ],
+  "recordSet": [record_set
+  ]
+}
+    
+    return metadata
+
+def main():
+    if len(sys.argv) != 2:
+        print("Usage: python generate_croissant.py input.csv")
+        sys.exit(1)
+    
+    input_csv = Path(sys.argv[
+  1
+])
+    output_json = Path(f"{input_csv.stem}_croissant.jsonld")
+    
+    try:
+        # Generate metadata
+        metadata = generate_metadata(input_csv)
+        
+        # Save to file
+        with open(output_json,
+"w", encoding="utf-8") as f:
+            json.dump(metadata, f, indent=2, ensure_ascii=False)
+        
+        # Validate
+        try:
+            Dataset(output_json)
+            print(f"✅ Successfully generated and validated: {output_json}")
+        except Exception as e:
+            print(f"⚠️ Generated but validation warning: {str(e)}")
+        
+    except Exception as e:
+        print(f"❌ Error: {str(e)}")
+        sys.exit(1)
+
+if __name__ == "__main__":
+    main()

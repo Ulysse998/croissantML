@@ -1,0 +1,39 @@
+{
+  "@context": {
+    "@vocab": "http://schema.org/",
+    "ml": "http://mlcommons.org/croissant/",
+    "rai": "http://mlcommons.org/croissant/RAI/"
+  },
+  "@type": "Dataset",
+  "name": "sample_dataset",
+  "description": "Dataset describing station measurements and filtration volumes.",
+  "data": [
+    {
+      "@type": "FileObject",
+      "name": "sample_data",
+      "encodingFormat": "text/csv",
+      "source": "sample_data.csv",
+      "features": [
+        {
+          "@type": "Feature",
+          "name": "Station",
+          "description": "Code of the measurement station",
+          "dataType": "string"
+        },
+        {
+          "@type": "Feature",
+          "name": "ml filtrated",
+          "description": "Volume filtered in milliliters",
+          "dataType": "number"
+        },
+        {
+          "@type": "Feature",
+          "name": "Date",
+          "description": "Date of the measurement",
+          "dataType": "string"
+        }
+      ]
+    }
+  ]
+}
+

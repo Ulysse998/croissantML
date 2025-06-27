@@ -1,0 +1,199 @@
+{
+  "@context": "https://mlcommons.org/croissant/1.0/context.json",
+  "@type": "Dataset",
+  "name": "Dataset_sample_data",
+  "description": "Dataset generated from sample_data.csv",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "datePublished": "2025-06-25",
+  "version": "1.0",
+  "citation": "Generated from CSV data",
+  "distribution": [
+    {
+      "@type": "FileObject",
+      "name": "sample_data",
+      "description": "CSV file: sample_data.csv",
+      "encodingFormat": "text/csv",
+      "contentUrl": "file://C:/Users/ulysse.fouquet/Desktop/croissant/ulysse/sample_data.csv",
+      "sha256": "33418497592fe655af833fa26c65bedec4b372f942153111fae98873a03c541d",
+      "@id": "file/sample_data"
+    }
+  ],
+  "recordSet": [
+    {
+      "@type": "RecordSet",
+      "name": "sample_data",
+      "description": "Data from sample_data.csv",
+      "fields": [
+        {
+          "@type": "Field",
+          "name": "Month_station_RN",
+          "dataType": "Text",
+          "source": {
+            "fileObject": {
+              "@id": "file/sample_data"
+            },
+            "extract": {
+              "column": "Month_station_RN"
+            }
+          },
+          "@id": "field/sample_data/Month_station_RN"
+        },
+        {
+          "@type": "Field",
+          "name": "Month_station",
+          "dataType": "Text",
+          "source": {
+            "fileObject": {
+              "@id": "file/sample_data"
+            },
+            "extract": {
+              "column": "Month_station"
+            }
+          },
+          "@id": "field/sample_data/Month_station"
+        },
+        {
+          "@type": "Field",
+          "name": "Number_usearch",
+          "dataType": "Text",
+          "source": {
+            "fileObject": {
+              "@id": "file/sample_data"
+            },
+            "extract": {
+              "column": "Number_usearch"
+            }
+          },
+          "@id": "field/sample_data/Number_usearch"
+        },
+        {
+          "@type": "Field",
+          "name": "Number",
+          "dataType": "Text",
+          "source": {
+            "fileObject": {
+              "@id": "file/sample_data"
+            },
+            "extract": {
+              "column": "Number"
+            }
+          },
+          "@id": "field/sample_data/Number"
+        },
+        {
+          "@type": "Field",
+          "name": "Station",
+          "dataType": "Text",
+          "source": {
+            "fileObject": {
+              "@id": "file/sample_data"
+            },
+            "extract": {
+              "column": "Station"
+            }
+          },
+          "@id": "field/sample_data/Station"
+        },
+        {
+          "@type": "Field",
+          "name": "ml_filtrated",
+          "dataType": "Text",
+          "source": {
+            "fileObject": {
+              "@id": "file/sample_data"
+            },
+            "extract": {
+              "column": "ml filtrated"
+            }
+          },
+          "@id": "field/sample_data/ml_filtrated"
+        },
+        {
+          "@type": "Field",
+          "name": "Date_2",
+          "dataType": "Text",
+          "source": {
+            "fileObject": {
+              "@id": "file/sample_data"
+            },
+            "extract": {
+              "column": "Date_2"
+            }
+          },
+          "@id": "field/sample_data/Date_2"
+        },
+        {
+          "@type": "Field",
+          "name": "Month",
+          "dataType": "Text",
+          "source": {
+            "fileObject": {
+              "@id": "file/sample_data"
+            },
+            "extract": {
+              "column": "Month"
+            }
+          },
+          "@id": "field/sample_data/Month"
+        },
+        {
+          "@type": "Field",
+          "name": "Year",
+          "dataType": "Integer",
+          "source": {
+            "fileObject": {
+              "@id": "file/sample_data"
+            },
+            "extract": {
+              "column": "Year"
+            }
+          },
+          "@id": "field/sample_data/Year"
+        },
+        {
+          "@type": "Field",
+          "name": "Month.1",
+          "dataType": "Integer",
+          "source": {
+            "fileObject": {
+              "@id": "file/sample_data"
+            },
+            "extract": {
+              "column": "Month.1"
+            }
+          },
+          "@id": "field/sample_data/Month.1"
+        },
+        {
+          "@type": "Field",
+          "name": "Day",
+          "dataType": "Integer",
+          "source": {
+            "fileObject": {
+              "@id": "file/sample_data"
+            },
+            "extract": {
+              "column": "Day"
+            }
+          },
+          "@id": "field/sample_data/Day"
+        },
+        {
+          "@type": "Field",
+          "name": "Date",
+          "dataType": "Date",
+          "source": {
+            "fileObject": {
+              "@id": "file/sample_data"
+            },
+            "extract": {
+              "column": "Date"
+            }
+          },
+          "@id": "field/sample_data/Date"
+        }
+      ],
+      "@id": "recordset/sample_data"
+    }
+  ]
+}

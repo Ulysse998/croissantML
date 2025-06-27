@@ -1,0 +1,126 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "recordSet": "https://mlcommons.org/croissant/recordSet",
+    "FileObject": "https://mlcommons.org/croissant/FileObject",
+    "Field": "https://mlcommons.org/croissant/Field",
+    "column": "https://mlcommons.org/croissant/column",
+    "dataType": "https://mlcommons.org/croissant/dataType",
+    "file": "https://mlcommons.org/croissant/file",
+    "name": "https://schema.org/name",
+    "description": "https://schema.org/description",
+    "citation": "https://schema.org/citation",
+    "datePublished": "https://schema.org/datePublished",
+    "license": "https://schema.org/license",
+    "version": "https://schema.org/version"
+  },
+  "@type": "Dataset",
+  "@id": "https://example.org/datasets/sample_data",
+  "name": "Dataset2025",
+  "description": "Automatically generated CroissantML metadata for the dataset.",
+  "citation": "Fouquet, Ulysse (2025). Sample dataset.",
+  "datePublished": "2025-06-17",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "version": "1.0",
+  "recordSet": [
+    {
+      "@type": "RecordSet",
+      "name": "MainRecordSet",
+      "description": "Records from the CSV file.",
+      "file": [
+        {
+          "@type": "FileObject",
+          "name": "sample_data.csv",
+          "encodingFormat": "text/csv",
+          "contentUrl": "sample_data.csv"
+        }
+      ],
+      "field": [
+        {
+          "@type": "Field",
+          "name": "Month_station_RN",
+          "description": "Column Month_station_RN from the CSV file",
+          "column": "Month_station_RN",
+          "dataType": "string"
+        },
+        {
+          "@type": "Field",
+          "name": "Month_station",
+          "description": "Column Month_station from the CSV file",
+          "column": "Month_station",
+          "dataType": "string"
+        },
+        {
+          "@type": "Field",
+          "name": "Number_usearch",
+          "description": "Column Number_usearch from the CSV file",
+          "column": "Number_usearch",
+          "dataType": "string"
+        },
+        {
+          "@type": "Field",
+          "name": "Number",
+          "description": "Column Number from the CSV file",
+          "column": "Number",
+          "dataType": "string"
+        },
+        {
+          "@type": "Field",
+          "name": "Station",
+          "description": "Column Station from the CSV file",
+          "column": "Station",
+          "dataType": "string"
+        },
+        {
+          "@type": "Field",
+          "name": "ml filtrated",
+          "description": "Column ml filtrated from the CSV file",
+          "column": "ml filtrated",
+          "dataType": "string"
+        },
+        {
+          "@type": "Field",
+          "name": "Date_2",
+          "description": "Column Date_2 from the CSV file",
+          "column": "Date_2",
+          "dataType": "string"
+        },
+        {
+          "@type": "Field",
+          "name": "Month",
+          "description": "Column Month from the CSV file",
+          "column": "Month",
+          "dataType": "string"
+        },
+        {
+          "@type": "Field",
+          "name": "Year",
+          "description": "Column Year from the CSV file",
+          "column": "Year",
+          "dataType": "number"
+        },
+        {
+          "@type": "Field",
+          "name": "Month.1",
+          "description": "Column Month.1 from the CSV file",
+          "column": "Month.1",
+          "dataType": "number"
+        },
+        {
+          "@type": "Field",
+          "name": "Day",
+          "description": "Column Day from the CSV file",
+          "column": "Day",
+          "dataType": "number"
+        },
+        {
+          "@type": "Field",
+          "name": "Date",
+          "description": "Column Date from the CSV file",
+          "column": "Date",
+          "dataType": "string"
+        }
+      ]
+    }
+  ]
+}
